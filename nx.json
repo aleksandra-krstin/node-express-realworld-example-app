@@ -1,5 +1,12 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "npmScope": "api",
+  "defaultProject": "api",
+  "projects": {
+    "api": {
+      "tags": []
+    }
+  },
   "targetDefaults": {
     "build": {
       "cache": true,
@@ -44,3 +51,5 @@
     "sharedGlobals": []
   }
 }
+
+
