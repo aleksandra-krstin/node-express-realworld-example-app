@@ -17,6 +17,7 @@ COPY . .
 
 # Run Nx build (or whatever your build command is)
 # Adjust this if your backend project name is not "api"
+RUN npx prisma generate
 RUN npx nx build api
 
 
@@ -25,12 +26,12 @@ RUN npx nx build api
 # =========================
 FROM node:lts-alpine AS runner
 
+WORKDIR /app
+
 # Set environment variables
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3001
-
-WORKDIR /app
 
 # Create the 'api' user
 RUN addgroup --system api && adduser --system -G api api
@@ -42,6 +43,9 @@ RUN npm ci --omit=dev
 
 # Change ownership (optional, good practice for non-root user)
 RUN chown -R api:api .
+
+# Also copy Prisma files (optional, sometimes needed)
+COPY --from=builder /app/prisma ./prisma
 
 USER api
 
