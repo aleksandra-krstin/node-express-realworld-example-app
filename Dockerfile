@@ -1,7 +1,7 @@
 # =========================
 # 1️ Build stage
 # =========================
-FROM node:lts-alpine AS builder
+FROM node:lts-slim AS builder
 
 # Set working directory
 WORKDIR /app
@@ -24,7 +24,7 @@ RUN npx nx build api
 # =========================
 # 2️  Runtime stage
 # =========================
-FROM node:lts-alpine AS runner
+FROM node:lts-slim AS runner
 
 WORKDIR /app
 
