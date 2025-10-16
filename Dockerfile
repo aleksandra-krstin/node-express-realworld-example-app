@@ -33,6 +33,11 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3001
 
+# Prisma's Query Engine requires the libssl system library.
+RUN apt-get update -y && \
+    apt-get install -y openssl libssl-dev && \
+    rm -rf /var/lib/apt/lists/*
+
 # Create the 'api' user
 RUN addgroup --system api && adduser --system --ingroup api api
 
