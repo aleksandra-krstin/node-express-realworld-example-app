@@ -3,6 +3,10 @@
 # =========================
 FROM node:lts-slim AS builder
 
+RUN apt-get update -y && \
+    apt-get install -y openssl libssl-dev
+  
+
 # Set working directory
 WORKDIR /app
 
@@ -32,6 +36,10 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3001
+
+RUN apt-get update -y && \
+    apt-get install -y openssl && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create the 'api' user
 RUN addgroup --system api && adduser --system --ingroup api api
