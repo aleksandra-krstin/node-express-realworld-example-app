@@ -36,7 +36,7 @@ WORKDIR /app
 RUN addgroup --system api && adduser --system -G api api
 
 # Copy only built output + production dependencies
-COPY --from=builder /app/dist/apps/api ./api
+COPY --from=builder /app/dist/api ./api
 COPY package*.json ./
 RUN npm ci --omit=dev
 
