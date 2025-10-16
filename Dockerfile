@@ -34,7 +34,7 @@ ENV HOST=0.0.0.0
 ENV PORT=3001
 
 # Create the 'api' user
-RUN addgroup --system api && adduser --system -G api api
+RUN addgroup --system api && adduser --system --ingroup api api
 
 # Copy only built output + production dependencies
 COPY --from=builder /app/dist/api ./api
