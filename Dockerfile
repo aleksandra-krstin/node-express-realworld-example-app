@@ -45,7 +45,7 @@ RUN npm ci --omit=dev
 RUN chown -R api:api .
 
 # Also copy Prisma files (optional, sometimes needed)
-COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
 USER api
 
