@@ -50,7 +50,7 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 
 # Copy the Prisma schema and migrations directory
-COPY --from=builder /app/prisma ./prisma 
+COPY --from=builder /app/src/app/prisma ./prisma
 
 # Change ownership (optional, good practice for non-root user)
 RUN chown -R api:api .
