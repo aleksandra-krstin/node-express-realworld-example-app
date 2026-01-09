@@ -21,7 +21,7 @@ done
 echo "✅ Database is up, applying Prisma migrations..."
 
 # Retry loop for migrations
-until npx prisma migrate deploy --schema=./prisma/schema.prisma; do
+until npx prisma migrate deploy --schema=./src/prisma/schema.prisma; do
   i=$((i+1))
   echo "Attempt $i/$MAX_RETRIES: Prisma migrate deploy failed — retrying in ${SLEEP_SECONDS}s..."
   if [ "$i" -ge "$MAX_RETRIES" ]; then
@@ -32,7 +32,7 @@ until npx prisma migrate deploy --schema=./prisma/schema.prisma; do
 done
 
 echo "Migrations applied (or were already up-to-date). Generating Prisma client..."
-npx prisma generate --schema=./prisma/schema.prisma   
+npx prisma generate --schema=./src/prisma/schema.prisma  
 
 echo "Starting backend..."
-exec node dist/main.js                               
+exec node dist/api/main.js                               

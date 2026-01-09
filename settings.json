@@ -1,0 +1,6 @@
+{
+  "files.autoSave": "off",
+  "git.autofetch": false,
+  "git.confirmSync": true,
+  "git.enableSmartCommit": false
+}
